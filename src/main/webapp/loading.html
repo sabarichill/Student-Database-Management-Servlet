@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenfield University — Loading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivy:       #1a4231;
+      --ivy-deep:  #112b20;
+      --ivy-mid:   #235438;
+      --rust:      #a0442e;
+      --brass:     #9a7c3f;
+      --stone:     #f5f3ee;
+      --rule:      #dddad2;
+      --display:   'Playfair Display', Georgia, serif;
+      --sans:      'Inter', Arial, sans-serif;
+      --mono:      'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--ivy);
+      background-image:
+        radial-gradient(ellipse at 15% 60%, rgba(160,68,46,.20) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 25%, rgba(154,124,63,.14) 0%, transparent 50%),
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: auto, auto, 40px 40px, 40px 40px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 20px;
+      padding: 48px 52px;
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 24px 64px rgba(0,0,0,.35);
+      animation: fadeUp .6s cubic-bezier(.4,0,.2,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── LOGO ── */
+    .logo-mark {
+      width: 64px;
+      height: 64px;
+      background: var(--rust);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 28px;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(160,68,46,.5);
+      margin-bottom: 20px;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(160,68,46,.5); }
+      50%       { box-shadow: 0 4px 32px rgba(160,68,46,.8); }
+    }
+
+    .university-name {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .portal-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,.45);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,.08);
+      margin-bottom: 36px;
+    }
+
+    /* ── SPINNER ── */
+    .spinner-wrap {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      margin-bottom: 28px;
+    }
+
+    .spinner-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2.5px solid transparent;
+    }
+
+    .spinner-ring-outer {
+      border-top-color: var(--rust);
+      animation: spin 1.1s linear infinite;
+    }
+
+    .spinner-ring-inner {
+      inset: 8px;
+      border-top-color: rgba(154,124,63,.6);
+      animation: spin 0.75s linear infinite reverse;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── PROGRESS BAR ── */
+    .progress-wrap {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .progress-track {
+      height: 3px;
+      background: rgba(255,255,255,.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--rust), var(--brass));
+      border-radius: 99px;
+      animation: progressAnim 12s cubic-bezier(.4,0,.2,1) forwards;
+    }
+
+    @keyframes progressAnim {
+      0%   { width: 0%; }
+      15%  { width: 25%; }
+      35%  { width: 48%; }
+      60%  { width: 68%; }
+      80%  { width: 82%; }
+      95%  { width: 91%; }
+      100% { width: 94%; }
+    }
+
+    /* ── STATUS TEXT ── */
+    .status-line {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: rgba(255,255,255,.4);
+      letter-spacing: 0.06em;
+      text-align: center;
+      min-height: 18px;
+      transition: opacity .4s;
+    }
+
+    /* ── STEPS ── */
+    .steps {
+      width: 100%;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.3);
+      transition: color .4s;
+    }
+
+    .step.done  { color: rgba(255,255,255,.65); }
+    .step.active { color: #fff; }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      flex-shrink: 0;
+      transition: background .4s;
+    }
+
+    .step.done .step-dot  { background: var(--brass); }
+    .step.active .step-dot {
+      background: var(--rust);
+      box-shadow: 0 0 0 3px rgba(160,68,46,.35);
+      animation: blink 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes blink {
+      from { opacity: .7; }
+      to   { opacity: 1; }
+    }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      width: 100%;
+      text-align: center;
+    }
+
+    .card-footer p {
+      font-size: 11px;
+      color: rgba(255,255,255,.25);
+      font-family: var(--mono);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      body { padding: 16px; }
+      .card { padding: 36px 28px; }
+      .university-name { font-size: 19px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .spinner-ring-outer, .spinner-ring-inner,
+      .logo-mark, .progress-fill, .step-dot { animation: none !important; }
+      .progress-fill { width: 80%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="logo-mark">GU</div>
+  <div class="university-name">Greenfield University</div>
+  <div class="portal-label">Student Records Portal · Starting</div>
+
+  <div class="divider"></div>
+
+  <div class="spinner-wrap">
+    <div class="spinner-ring spinner-ring-outer"></div>
+    <div class="spinner-ring spinner-ring-inner"></div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="status-line" id="status">Initialising portal services…</div>
+
+  <div class="steps">
+    <div class="step" id="step1">
+      <div class="step-dot"></div>
+      Allocating compute resources
+    </div>
+    <div class="step" id="step2">
+      <div class="step-dot"></div>
+      Loading application context
+    </div>
+    <div class="step" id="step3">
+      <div class="step-dot"></div>
+      Connecting to student database
+    </div>
+    <div class="step" id="step4">
+      <div class="step-dot"></div>
+      Ready — redirecting to portal
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <p>ACADEMIC YEAR 2025–26 · SECURE ACCESS</p>
+  </div>
+
+</div>
+
+<script>
+  const steps = [
+    { el: document.getElementById('step1'), delay: 0,    msg: 'Allocating compute resources…' },
+    { el: document.getElementById('step2'), delay: 3000, msg: 'Loading application context…' },
+    { el: document.getElementById('step3'), delay: 6000, msg: 'Connecting to student database…' },
+    { el: document.getElementById('step4'), delay: 9000, msg: 'Almost ready…' },
+  ];
+
+  const statusEl = document.getElementById('status');
+  let currentStep = 0;
+
+  function activateStep(i) {
+    if (i > 0) {
+      steps[i - 1].el.classList.remove('active');
+      steps[i - 1].el.classList.add('done');
+    }
+    if (i < steps.length) {
+      steps[i].el.classList.add('active');
+      statusEl.textContent = steps[i].msg;
+    }
+  }
+
+  steps.forEach((s, i) => {
+    setTimeout(() => activateStep(i), s.delay);
+  });
+
+  // Poll the app — redirect as soon as it responds
+  function checkReady() {
+    fetch('/login.jsp', { method: 'HEAD', cache: 'no-store' })
+      .then(res => {
+        if (res.ok) {
+          steps[steps.length - 1].el.classList.add('done');
+          statusEl.textContent = 'Portal ready — entering…';
+          setTimeout(() => { window.location.href = '/login.jsp'; }, 600);
+        } else {
+          setTimeout(checkReady, 2500);
+        }
+      })
+      .catch(() => setTimeout(checkReady, 2500));
+  }
+
+  setTimeout(checkReady, 5000);
+</script>
+
+</body>
+</html>
