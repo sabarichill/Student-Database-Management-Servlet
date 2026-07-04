@@ -1,24 +1,26 @@
 /* =========================================================
-   REGISTRAR LEDGER — visual identity for the student system
-   Serif letterhead + mono ledger accents + ink-stamp alerts
+   CAMPUS ID — a college-portal visual identity
+   Ivy green + rust, engraved plaques, student-ID login card
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
 :root {
-    --ink: #1c2b45;
-    --ink-light: #2e4267;
-    --paper: #f5f6f2;
+    --ivy: #1f4a3d;
+    --ivy-deep: #163a2f;
+    --ivy-tint: #e6ede9;
+    --rust: #9c4a32;
+    --rust-deep: #7d3a27;
+    --stone: #eff1ec;
     --card: #ffffff;
-    --rule: #dadfe3;
-    --gold: #b8912f;       /* decorative: borders, tints, icons */
-    --gold-text: #8a6d1f;  /* accessible on white for small text */
-    --stamp-red: #a23b34;
-    --stamp-green: #2f6b4f;
-    --text: #20242b;
-    --text-muted: #667085;
-    --serif: 'Fraunces', Georgia, serif;
-    --sans: 'IBM Plex Sans', Arial, sans-serif;
+    --rule: #dde2dc;
+    --brass: #8f7a4a;
+    --success: #3b7a5a;
+    --error: #a23b34;
+    --text: #202824;
+    --text-muted: #6a7570;
+    --display: 'Roboto Slab', Georgia, serif;
+    --sans: 'Inter', Arial, sans-serif;
     --mono: 'IBM Plex Mono', 'Courier New', monospace;
 }
 
@@ -30,20 +32,15 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: var(--sans);
-    background: var(--paper);
-    background-image: repeating-linear-gradient(
-        to bottom,
-        rgba(28, 43, 69, 0.035) 0px,
-        rgba(28, 43, 69, 0.035) 1px,
-        transparent 1px,
-        transparent 34px
-    );
+    background-color: var(--stone);
+    background-image: radial-gradient(var(--rule) 1px, transparent 1px);
+    background-size: 22px 22px;
     color: var(--text);
     min-height: 100%;
 }
 
 a {
-    color: var(--ink-light);
+    color: var(--ivy);
 }
 
 a:focus-visible,
@@ -51,20 +48,20 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 .btn:focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--rust);
     outline-offset: 2px;
 }
 
-/* ===== NAVBAR (letterhead) ===== */
+/* ===== NAVBAR (campus gate) ===== */
 .navbar {
-    background: var(--ink);
+    background: var(--ivy);
     color: #fff;
-    padding: 16px 28px;
+    padding: 16px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    border-bottom: 3px solid var(--gold);
+    border-bottom: 4px solid var(--rust);
 }
 
 .navbar div {
@@ -74,134 +71,171 @@ select:focus-visible,
 }
 
 .navbar a {
-    color: #dfe4ec;
+    color: #dce8e2;
     text-decoration: none;
-    margin-right: 20px;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding-bottom: 3px;
-    border-bottom: 1px solid transparent;
+    margin-right: 22px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 4px 2px;
+    border-bottom: 2px solid transparent;
     transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .navbar a:hover {
-    text-decoration: none;
     color: #fff;
-    border-bottom-color: var(--gold);
+    border-bottom-color: var(--rust);
 }
 
 .navbar strong {
     color: #fff;
-    font-family: var(--serif);
+    font-family: var(--display);
     font-weight: 700;
     font-size: 19px;
-    letter-spacing: 0.01em;
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    letter-spacing: 0.01em;
 }
 
 .navbar strong::before {
     content: '';
-    width: 22px;
-    height: 22px;
-    border: 2px solid var(--gold);
-    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    background: var(--rust);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
     display: inline-block;
-    position: relative;
     flex-shrink: 0;
-}
-
-.navbar strong::after {
-    content: '✦';
-    position: absolute;
-    color: var(--gold);
-    font-size: 12px;
-    margin-left: -18px;
 }
 
 /* ===== LAYOUT CONTAINERS ===== */
 .container {
-    max-width: 900px;
-    margin: 30px auto;
+    max-width: 920px;
+    margin: 32px auto;
     background: var(--card);
-    padding: 32px 34px;
-    border-radius: 3px;
+    padding: 34px 36px;
+    border-radius: 6px;
     border: 1px solid var(--rule);
-    border-top: 4px solid var(--ink);
-    box-shadow: 0 6px 18px rgba(28, 43, 69, 0.06);
+    box-shadow: 0 10px 24px rgba(31, 74, 61, 0.08);
+    position: relative;
 }
 
+.container::before,
+.container::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rule);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.25);
+}
+
+.container::before { left: 12px; }
+.container::after { right: 12px; }
+
+/* ===== LOGIN BOX (student ID card) ===== */
 .login-box {
     max-width: 380px;
     margin: 70px auto;
     background: var(--card);
-    padding: 40px 36px 34px;
-    border-radius: 3px;
+    border-radius: 16px;
+    box-shadow: 0 14px 30px rgba(31, 74, 61, 0.16);
+    overflow: hidden;
     border: 1px solid var(--rule);
-    box-shadow: 0 8px 22px rgba(28, 43, 69, 0.09);
-    position: relative;
-    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
 }
 
 .login-box::before {
-    content: 'ACCESS RECORD';
-    position: absolute;
-    top: 16px;
-    right: -30px;
-    transform: rotate(45deg);
+    content: 'CAMPUS PORTAL · ACCESS CARD';
+    display: block;
+    background: var(--ivy);
+    color: #cfe3d9;
     font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    color: var(--gold-text);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding: 10px 36px;
+    position: relative;
 }
 
 .login-box::after {
     content: '';
     display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
+    height: 6px;
     background: repeating-linear-gradient(
-        to right,
-        var(--ink) 0, var(--ink) 6px, transparent 6px, transparent 12px
+        to right, var(--rust) 0 14px, var(--brass) 14px 22px
     );
+}
+
+.login-box h1 {
+    margin: 26px 36px 4px;
+}
+
+.login-box form,
+.login-box p,
+.login-box .alert {
+    margin-left: 36px;
+    margin-right: 36px;
+}
+
+.login-box::marker { content: none; }
+
+/* chip icon before the form */
+.login-box form {
+    position: relative;
+    padding-top: 6px;
+}
+
+.login-box form::before {
+    content: '';
+    display: block;
+    width: 34px;
+    height: 24px;
+    margin-bottom: 18px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #d8c98a, var(--brass));
+    background-image:
+        linear-gradient(135deg, #d8c98a, var(--brass)),
+        repeating-linear-gradient(to bottom, transparent 0 5px, rgba(0,0,0,0.15) 5px 6px);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15);
+}
+
+.login-box > p.helper-text,
+.login-box p.helper-text {
+    padding-bottom: 22px;
+}
+
+/* barcode footer flourish */
+.login-box {
+    padding-bottom: 4px;
 }
 
 /* ===== TYPOGRAPHY ===== */
 h1 {
-    color: var(--ink);
+    color: var(--ivy);
     margin-top: 0;
-    margin-bottom: 6px;
-    font-family: var(--serif);
+    margin-bottom: 8px;
+    font-family: var(--display);
     font-weight: 700;
-    font-size: 28px;
+    font-size: 27px;
     letter-spacing: -0.01em;
 }
 
-.container h1,
-.login-box h1 {
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--rule);
-    margin-bottom: 20px;
+.container h1 {
+    text-shadow: 0 1px 0 rgba(255,255,255,0.6), 0 -1px 0 rgba(31,74,61,0.15);
+    padding-bottom: 14px;
+    border-bottom: 3px double var(--rule);
+    margin-bottom: 22px;
 }
 
 h2 {
-    color: var(--ink);
-    margin: 26px 0 10px;
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 18px;
-}
-
-h2::before {
-    content: '§ ';
-    color: var(--gold-text);
-    font-family: var(--mono);
+    color: var(--ivy);
+    margin: 28px 0 10px;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 17px;
+    padding-left: 12px;
+    border-left: 4px solid var(--rust);
 }
 
 p {
@@ -217,11 +251,10 @@ form .field {
 label {
     display: block;
     margin-bottom: 7px;
-    font-family: var(--mono);
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
     color: var(--text-muted);
 }
 
@@ -231,20 +264,20 @@ input[type="email"],
 input[type="number"],
 select {
     width: 100%;
-    padding: 11px 12px;
-    border: 1px solid var(--rule);
-    border-radius: 2px;
+    padding: 11px 13px;
+    border: 1.5px solid var(--rule);
+    border-radius: 7px;
     font-size: 14px;
     font-family: var(--sans);
-    background: var(--paper);
+    background: var(--stone);
     color: var(--text);
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 select {
     appearance: none;
-    background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%),
-        linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+    background-image: linear-gradient(45deg, transparent 50%, var(--ivy) 50%),
+        linear-gradient(135deg, var(--ivy) 50%, transparent 50%);
     background-position: calc(100% - 18px) center, calc(100% - 13px) center;
     background-size: 5px 5px, 5px 5px;
     background-repeat: no-repeat;
@@ -252,232 +285,226 @@ select {
 
 input:focus, select:focus {
     outline: none;
-    border-color: var(--ink);
+    border-color: var(--ivy);
     background: var(--card);
-    box-shadow: 0 0 0 3px rgba(184, 145, 47, 0.18);
+    box-shadow: 0 0 0 3px rgba(156, 74, 50, 0.15);
 }
 
 input::placeholder {
-    color: #a7b0bc;
+    color: #94a09a;
 }
 
 /* ===== BUTTONS ===== */
 button, .btn {
-    background: var(--ink);
+    background: var(--ivy);
     color: #fff;
-    border: 1px solid var(--ink);
-    padding: 10px 22px;
-    border-radius: 2px;
+    border: none;
+    padding: 11px 24px;
+    border-radius: 999px;
     cursor: pointer;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
     text-decoration: none;
     display: inline-block;
     margin-top: 4px;
     margin-right: 8px;
-    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    transition: background 0.15s ease, transform 0.1s ease;
 }
 
 button:hover, .btn:hover {
-    background: var(--card);
-    color: var(--ink);
-    border-color: var(--ink);
+    background: var(--ivy-deep);
+}
+
+button:active, .btn:active {
+    transform: scale(0.98);
 }
 
 .btn-danger {
-    background: var(--stamp-red);
-    border-color: var(--stamp-red);
+    background: var(--error);
 }
 
 .btn-danger:hover {
-    background: var(--card);
-    color: var(--stamp-red);
-    border-color: var(--stamp-red);
+    background: var(--rust-deep);
 }
 
 .btn-secondary {
     background: var(--card);
-    color: var(--text-muted);
-    border-color: var(--rule);
+    color: var(--text);
+    border: 1.5px solid var(--rule);
 }
 
 .btn-secondary:hover {
-    background: var(--paper);
-    color: var(--text);
+    background: var(--stone);
     border-color: var(--text-muted);
 }
 
-/* ===== TABLES (ledger sheet) ===== */
+/* ===== TABLES (course catalog) ===== */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 18px;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th, td {
     text-align: left;
-    padding: 11px 13px;
-    border-bottom: 1px solid var(--rule);
+    padding: 12px 14px;
     font-size: 14px;
 }
 
 th {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--ink);
-    box-shadow: 0 3px 0 -2px var(--rule);
+    background: var(--ivy);
+    color: #fff;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    border-bottom: 3px solid var(--rust);
 }
 
 td {
-    font-family: var(--sans);
+    border-bottom: 1px solid var(--rule);
+}
+
+tr:nth-child(even) td {
+    background: var(--ivy-tint);
 }
 
 tr:hover td {
-    background: #fbf8ee;
-    box-shadow: inset 3px 0 0 var(--gold);
+    background: #f4e9e3;
 }
 
-/* ===== ALERTS (ink-stamp treatment) ===== */
+/* ===== ALERTS (pinned notice) ===== */
 .alert {
-    padding: 13px 18px;
-    border-radius: 2px;
+    padding: 14px 18px 14px 34px;
+    border-radius: 4px 10px 10px 4px;
     margin-bottom: 18px;
-    font-size: 13px;
-    font-family: var(--mono);
-    letter-spacing: 0.02em;
+    font-size: 14px;
+    font-family: var(--sans);
+    font-weight: 500;
     position: relative;
     background: var(--card);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
 }
 
-.alert-error {
-    color: var(--stamp-red);
-    border: 2px solid var(--stamp-red);
-    transform: rotate(-1deg);
+.alert::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 12px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
-.alert-success {
-    color: var(--stamp-green);
-    border: 2px solid var(--stamp-green);
-    transform: rotate(0.6deg);
-}
-
-.alert::before,
 .alert::after {
     content: '';
     position: absolute;
-    width: 8px;
-    height: 8px;
-    border-style: solid;
-    border-width: 2px 0 0 2px;
-    top: 3px;
-    left: 3px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    border-radius: 4px 0 0 4px;
 }
 
-.alert::after {
-    top: auto;
-    left: auto;
-    bottom: 3px;
-    right: 3px;
-    border-width: 0 2px 2px 0;
+.alert-error {
+    color: var(--error);
+    border: 1px solid #f0d3ce;
 }
 
-.alert-error::before, .alert-error::after {
-    border-color: var(--stamp-red);
+.alert-error::before,
+.alert-error::after {
+    background: var(--error);
 }
 
-.alert-success::before, .alert-success::after {
-    border-color: var(--stamp-green);
+.alert-success {
+    color: var(--success);
+    border: 1px solid #cfe6da;
+}
+
+.alert-success::before,
+.alert-success::after {
+    background: var(--success);
 }
 
 .alert a {
-    color: var(--stamp-red);
-    font-weight: 600;
+    color: inherit;
+    font-weight: 700;
     text-decoration: underline;
-}
-
-.alert-success a {
-    color: var(--stamp-green);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .alert-error, .alert-success {
-        transform: none;
-    }
 }
 
 /* ===== TABLE ACTIONS ===== */
 .actions a {
     margin-right: 12px;
-    font-family: var(--mono);
-    font-size: 12px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 13px;
     text-decoration: none;
-    color: var(--ink-light);
+    color: var(--ivy);
 }
 
 .actions a:hover {
     text-decoration: underline;
-    color: var(--ink);
+    color: var(--rust);
 }
 
 /* ===== PAGINATION ===== */
 .pagination {
     margin-top: 18px;
-    font-family: var(--mono);
-    font-size: 13px;
 }
 
 .pagination a {
     margin-right: 6px;
     text-decoration: none;
-    color: var(--ink-light);
-    padding: 5px 10px;
-    border-radius: 2px;
-    border: 1px solid transparent;
+    color: var(--ivy);
+    font-weight: 600;
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1.5px solid transparent;
 }
 
 .pagination a:hover {
     border-color: var(--rule);
-    background: var(--paper);
+    background: var(--stone);
 }
 
 .pagination a.active {
-    font-weight: 600;
-    background: var(--ink);
+    background: var(--rust);
     color: #fff;
 }
 
 /* ===== HELPER TEXT ===== */
 .helper-text {
     margin-top: 20px;
-    font-size: 12px;
-    font-family: var(--mono);
-    letter-spacing: 0.02em;
+    font-size: 13px;
     color: var(--text-muted);
 }
 
 .helper-text strong {
-    color: var(--ink);
+    color: var(--ivy);
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
-    .container, .login-box {
+    .container {
         margin: 16px;
         padding: 22px;
     }
 
     .login-box {
-        clip-path: none;
+        margin: 24px 16px;
     }
 
-    .login-box::before {
-        display: none;
+    .login-box h1,
+    .login-box form,
+    .login-box p,
+    .login-box .alert {
+        margin-left: 24px;
+        margin-right: 24px;
     }
 
     .navbar {
