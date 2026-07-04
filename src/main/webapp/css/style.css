@@ -1,3 +1,27 @@
+/* =========================================================
+   REGISTRAR LEDGER — visual identity for the student system
+   Serif letterhead + mono ledger accents + ink-stamp alerts
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --ink: #1c2b45;
+    --ink-light: #2e4267;
+    --paper: #f5f6f2;
+    --card: #ffffff;
+    --rule: #dadfe3;
+    --gold: #b8912f;       /* decorative: borders, tints, icons */
+    --gold-text: #8a6d1f;  /* accessible on white for small text */
+    --stamp-red: #a23b34;
+    --stamp-green: #2f6b4f;
+    --text: #20242b;
+    --text-muted: #667085;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'IBM Plex Sans', Arial, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -5,25 +29,42 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f1f4f9;
-    color: #222;
+    font-family: var(--sans);
+    background: var(--paper);
+    background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(28, 43, 69, 0.035) 0px,
+        rgba(28, 43, 69, 0.035) 1px,
+        transparent 1px,
+        transparent 34px
+    );
+    color: var(--text);
     min-height: 100%;
 }
 
 a {
-    color: #2980b9;
+    color: var(--ink-light);
 }
 
-/* ===== NAVBAR ===== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+.btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+/* ===== NAVBAR (letterhead) ===== */
 .navbar {
-    background: #2c3e50;
+    background: var(--ink);
     color: #fff;
-    padding: 14px 28px;
+    padding: 16px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    border-bottom: 3px solid var(--gold);
 }
 
 .navbar div {
@@ -33,67 +74,155 @@ a {
 }
 
 .navbar a {
-    color: #ecf0f1;
+    color: #dfe4ec;
     text-decoration: none;
-    margin-right: 18px;
-    font-size: 15px;
+    margin-right: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .navbar a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: #fff;
+    border-bottom-color: var(--gold);
 }
 
 .navbar strong {
     color: #fff;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar strong::before {
+    content: '';
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.navbar strong::after {
+    content: '✦';
+    position: absolute;
+    color: var(--gold);
+    font-size: 12px;
+    margin-left: -18px;
 }
 
 /* ===== LAYOUT CONTAINERS ===== */
 .container {
     max-width: 900px;
     margin: 30px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: var(--card);
+    padding: 32px 34px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--ink);
+    box-shadow: 0 6px 18px rgba(28, 43, 69, 0.06);
 }
 
 .login-box {
     max-width: 380px;
     margin: 70px auto;
-    background: #fff;
-    padding: 36px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: var(--card);
+    padding: 40px 36px 34px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    box-shadow: 0 8px 22px rgba(28, 43, 69, 0.09);
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+}
+
+.login-box::before {
+    content: 'ACCESS RECORD';
+    position: absolute;
+    top: 16px;
+    right: -30px;
+    transform: rotate(45deg);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--gold-text);
+}
+
+.login-box::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: repeating-linear-gradient(
+        to right,
+        var(--ink) 0, var(--ink) 6px, transparent 6px, transparent 12px
+    );
 }
 
 /* ===== TYPOGRAPHY ===== */
 h1 {
-    color: #2c3e50;
+    color: var(--ink);
     margin-top: 0;
-    font-size: 26px;
+    margin-bottom: 6px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+}
+
+.container h1,
+.login-box h1 {
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--rule);
+    margin-bottom: 20px;
 }
 
 h2 {
-    color: #2c3e50;
-    margin: 24px 0 8px;
-    font-size: 19px;
+    color: var(--ink);
+    margin: 26px 0 10px;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 18px;
+}
+
+h2::before {
+    content: '§ ';
+    color: var(--gold-text);
+    font-family: var(--mono);
 }
 
 p {
-    line-height: 1.5;
+    line-height: 1.6;
+    color: var(--text);
 }
 
 /* ===== FORMS ===== */
 form .field {
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 label {
     display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #34495e;
+    margin-bottom: 7px;
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
 }
 
 input[type="text"],
@@ -102,161 +231,253 @@ input[type="email"],
 input[type="number"],
 select {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccd6e0;
-    border-radius: 5px;
+    padding: 11px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
     font-size: 14px;
-    background: #fff;
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--text);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+        linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+    background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
 }
 
 input:focus, select:focus {
     outline: none;
-    border-color: #2980b9;
-    box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.15);
+    border-color: var(--ink);
+    background: var(--card);
+    box-shadow: 0 0 0 3px rgba(184, 145, 47, 0.18);
 }
 
 input::placeholder {
-    color: #a0aab5;
+    color: #a7b0bc;
 }
 
 /* ===== BUTTONS ===== */
 button, .btn {
-    background: #2980b9;
+    background: var(--ink);
     color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    border: 1px solid var(--ink);
+    padding: 10px 22px;
+    border-radius: 2px;
     cursor: pointer;
-    font-size: 14px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     text-decoration: none;
     display: inline-block;
     margin-top: 4px;
     margin-right: 8px;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 button:hover, .btn:hover {
-    background: #1f6391;
+    background: var(--card);
+    color: var(--ink);
+    border-color: var(--ink);
 }
 
 .btn-danger {
-    background: #c0392b;
+    background: var(--stamp-red);
+    border-color: var(--stamp-red);
 }
 
 .btn-danger:hover {
-    background: #962d22;
+    background: var(--card);
+    color: var(--stamp-red);
+    border-color: var(--stamp-red);
 }
 
 .btn-secondary {
-    background: #7f8c8d;
+    background: var(--card);
+    color: var(--text-muted);
+    border-color: var(--rule);
 }
 
 .btn-secondary:hover {
-    background: #636e6f;
+    background: var(--paper);
+    color: var(--text);
+    border-color: var(--text-muted);
 }
 
-/* ===== TABLES ===== */
+/* ===== TABLES (ledger sheet) ===== */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 16px;
+    margin-top: 18px;
 }
 
 th, td {
     text-align: left;
-    padding: 10px 12px;
-    border-bottom: 1px solid #e3e8ee;
+    padding: 11px 13px;
+    border-bottom: 1px solid var(--rule);
     font-size: 14px;
 }
 
 th {
-    background: #f7f9fb;
-    color: #2c3e50;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--ink);
+    box-shadow: 0 3px 0 -2px var(--rule);
+}
+
+td {
+    font-family: var(--sans);
 }
 
 tr:hover td {
-    background: #fafcfe;
+    background: #fbf8ee;
+    box-shadow: inset 3px 0 0 var(--gold);
 }
 
-/* ===== ALERTS ===== */
+/* ===== ALERTS (ink-stamp treatment) ===== */
 .alert {
-    padding: 10px 14px;
-    border-radius: 5px;
-    margin-bottom: 16px;
-    font-size: 14px;
+    padding: 13px 18px;
+    border-radius: 2px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    font-family: var(--mono);
+    letter-spacing: 0.02em;
+    position: relative;
+    background: var(--card);
 }
 
 .alert-error {
-    background: #fdecea;
-    color: #c0392b;
-    border: 1px solid #f5c6cb;
+    color: var(--stamp-red);
+    border: 2px solid var(--stamp-red);
+    transform: rotate(-1deg);
 }
 
 .alert-success {
-    background: #eafaf1;
-    color: #1d8348;
-    border: 1px solid #c6f0d8;
+    color: var(--stamp-green);
+    border: 2px solid var(--stamp-green);
+    transform: rotate(0.6deg);
+}
+
+.alert::before,
+.alert::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    top: 3px;
+    left: 3px;
+}
+
+.alert::after {
+    top: auto;
+    left: auto;
+    bottom: 3px;
+    right: 3px;
+    border-width: 0 2px 2px 0;
+}
+
+.alert-error::before, .alert-error::after {
+    border-color: var(--stamp-red);
+}
+
+.alert-success::before, .alert-success::after {
+    border-color: var(--stamp-green);
 }
 
 .alert a {
-    color: #c0392b;
+    color: var(--stamp-red);
     font-weight: 600;
     text-decoration: underline;
 }
 
 .alert-success a {
-    color: #1d8348;
+    color: var(--stamp-green);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .alert-error, .alert-success {
+        transform: none;
+    }
 }
 
 /* ===== TABLE ACTIONS ===== */
 .actions a {
-    margin-right: 10px;
-    font-size: 13px;
+    margin-right: 12px;
+    font-family: var(--mono);
+    font-size: 12px;
     text-decoration: none;
+    color: var(--ink-light);
 }
 
 .actions a:hover {
     text-decoration: underline;
+    color: var(--ink);
 }
 
 /* ===== PAGINATION ===== */
 .pagination {
-    margin-top: 16px;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 13px;
 }
 
 .pagination a {
-    margin-right: 8px;
+    margin-right: 6px;
     text-decoration: none;
-    color: #2980b9;
-    padding: 4px 8px;
-    border-radius: 4px;
+    color: var(--ink-light);
+    padding: 5px 10px;
+    border-radius: 2px;
+    border: 1px solid transparent;
 }
 
 .pagination a:hover {
-    background: #eef4fa;
+    border-color: var(--rule);
+    background: var(--paper);
 }
 
 .pagination a.active {
-    font-weight: bold;
-    background: #2980b9;
+    font-weight: 600;
+    background: var(--ink);
     color: #fff;
 }
 
 /* ===== HELPER TEXT ===== */
 .helper-text {
-    margin-top: 18px;
-    font-size: 13px;
-    color: #888;
+    margin-top: 20px;
+    font-size: 12px;
+    font-family: var(--mono);
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
 }
 
 .helper-text strong {
-    color: #555;
+    color: var(--ink);
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
     .container, .login-box {
         margin: 16px;
-        padding: 20px;
+        padding: 22px;
+    }
+
+    .login-box {
+        clip-path: none;
+    }
+
+    .login-box::before {
+        display: none;
     }
 
     .navbar {
